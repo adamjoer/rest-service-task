@@ -5,7 +5,7 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("/person")
 public class PersonResource {
-    private Person person = new Person("John Doe", "USA");
+    private Person person = new Person("John Doe", "123 Main St");
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -15,7 +15,11 @@ public class PersonResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void updatePerson(Person newPerson) {
+    public void updatePerson(Person newPerson) throws Exception {
+        if (newPerson.address == null || newPerson.address.equals("-none-")) {
+            throw new PersonException("Address cannot be " + newPerson.address);
+        }
+
         this.person = newPerson;
     }
 }
