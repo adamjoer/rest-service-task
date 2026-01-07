@@ -1,10 +1,11 @@
-package org.acme.steps;
+package dtu.example;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.acme.HelloService;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import dtu.example.service.HelloService;
+
+import org.junit.jupiter.api.Assertions;
 
 public class HelloServiceSteps {
     private String result;
@@ -17,6 +18,6 @@ public class HelloServiceSteps {
 
     @Then("I get the answer {string}")
     public void iGetTheAnswer(String answer) {
-        assertEquals(answer, result);
+        Assertions.assertEquals(answer, result);
     }
 }

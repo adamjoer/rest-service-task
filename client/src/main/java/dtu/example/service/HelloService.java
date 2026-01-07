@@ -1,4 +1,4 @@
-package org.acme;
+package dtu.example.service;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.client.Client;

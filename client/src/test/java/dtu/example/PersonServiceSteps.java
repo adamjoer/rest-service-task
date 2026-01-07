@@ -1,11 +1,11 @@
-package org.acme.steps;
+package dtu.example;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import jakarta.ws.rs.core.Response;
-import org.acme.Person;
-import org.acme.PersonService;
+import dtu.example.record.Person;
+import dtu.example.service.PersonService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -40,8 +40,8 @@ public class PersonServiceSteps {
     @Then("I get the person with name {string} and address {string}")
     public void iGetThePersonWithNameAndAddress(String name, String address) {
         assertNotNull(result);
-        assertEquals(name, result.name);
-        assertEquals(address, result.address);
+        assertEquals(name, result.name());
+        assertEquals(address, result.address());
     }
 
     @Then("I get a 400 Bad Request response")

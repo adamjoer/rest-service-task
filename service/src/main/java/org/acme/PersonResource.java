@@ -16,8 +16,8 @@ public class PersonResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void updatePerson(Person newPerson) throws Exception {
-        if (newPerson.address == null || newPerson.address.equals("-none-")) {
-            throw new PersonException("Address cannot be " + newPerson.address);
+        if (newPerson.address() == null || newPerson.address().equals("-none-")) {
+            throw new PersonException("Address cannot be " + newPerson.address());
         }
 
         this.person = newPerson;
