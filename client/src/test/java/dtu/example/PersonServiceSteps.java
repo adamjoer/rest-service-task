@@ -6,9 +6,7 @@ import io.cucumber.java.en.When;
 import jakarta.ws.rs.core.Response;
 import dtu.example.record.Person;
 import dtu.example.service.PersonService;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Assertions;
 
 public class PersonServiceSteps {
 
@@ -19,8 +17,8 @@ public class PersonServiceSteps {
     @Given("the person service is initialized with name {string} and address {string}")
     public void thePersonServiceIsInitializedWithNameAndAddress(String name, String address) {
         Person person = new Person(name, address);
-        try (var resp = service.updatePerson(person)) {
-            // Initialization done
+        try (var response = service.updatePerson(person)) {
+            Assertions.assertEquals(204, response.getStatus());
         }
     }
 
@@ -39,14 +37,14 @@ public class PersonServiceSteps {
 
     @Then("I get the person with name {string} and address {string}")
     public void iGetThePersonWithNameAndAddress(String name, String address) {
-        assertNotNull(result);
-        assertEquals(name, result.name());
-        assertEquals(address, result.address());
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(name, result.name());
+        Assertions.assertEquals(address, result.address());
     }
 
     @Then("I get a 400 Bad Request response")
     public void iGetA400BadRequestError() {
-        assertNotNull(response);
-        assertEquals(400, response.getStatus());
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals(400, response.getStatus());
     }
 }
